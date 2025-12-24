@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>maru's salon | 奈良県橿原市 完全貸切プライベートサロン</title>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Arial, sans-serif;
+            line-height: 1.8;
+            color: #2c2c2c;
+            background: #fafafa;
+            letter-spacing: 0.05em;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(0,0,0,0.7), rgba(40,40,40,0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23d4af37" width="1200" height="600"/></svg>');
+            background-size: cover;
+            background-position: center;
+            padding: 120px 20px 100px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(212,175,55,0.15) 0%, transparent 50%);
+        }
+
+        .logo {
+            font-size: 3.5em;
+            font-weight: 300;
+            color: #fff;
+            margin-bottom: 15px;
+            letter-spacing: 0.1em;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.2s ease;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .tagline {
+            font-size: 1.1em;
+            color: #d4af37;
+            margin-bottom: 50px;
+            letter-spacing: 0.15em;
+            position: relative;
+            z-index: 1;
+            font-weight: 300;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .rating-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(255,255,255,0.95);
+            padding: 20px 40px;
+            border-radius: 2px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1.8s ease;
+        }
+
+        .rating-badge .stars {
+            color: #d4af37;
+            font-size: 1.2em;
+            letter-spacing: 2px;
+        }
+
+        .rating-badge .score {
+            font-size: 2em;
+            font-weight: 300;
+            color: #2c2c2c;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .rating-badge .reviews {
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: #d4af37;
+            color: #fff;
+            padding: 18px 60px;
+            margin-top: 40px;
+            text-decoration: none;
+            font-size: 1em;
+            letter-spacing: 0.15em;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+            border: 1px solid #d4af37;
+            font-weight: 300;
+        }
+
+        .cta-primary:hover {
+            background: transparent;
+            color: #d4af37;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(212,175,55,0.3);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section {
+            margin-bottom: 100px;
+            animation: fadeIn 1s ease;
+        }
+
+        .section-title {
+            font-size: 2.2em;
+            color: #2c2c2c;
+            margin-bottom: 20px;
+            font-weight: 300;
+            text-align: center;
+            letter-spacing: 0.1em;
+            position: relative;
+            padding-bottom: 30px;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: #d4af37;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 0.95em;
+            margin-bottom: 60px;
+            letter-spacing: 0.1em;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 40px 30px;
+            background: #fff;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+        }
+
+        .feature-item:hover {
+            border-color: #d4af37;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
+            margin-bottom: 25px;
+            opacity: 0.8;
+        }
+
+        .feature-title {
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+
+        .feature-desc {
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.8;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .menu-card {
+            background: #fff;
+            padding: 40px;
+            border-left: 2px solid #d4af37;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .menu-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 2px;
+            height: 0;
+            background: #2c2c2c;
+            transition: height 0.4s ease;
+        }
+
+        .menu-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateX(5px);
+        }
+
+        .menu-card:hover::before {
+            height: 100%;
+        }
+
+        .menu-name {
+            color: #2c2c2c;
+            font-size: 1.2em;
+            margin-bottom: 12px;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+        }
+
+        .menu-desc {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .menu-price {
+            color: #d4af37;
+            font-size: 1.8em;
+            font-weight: 300;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .testimonial-container {
+            max-width: 800px;
+            margin: 60px auto 0;
+        }
+
+        .testimonial {
+            background: #fff;
+            padding: 50px;
+            margin-bottom: 30px;
+            border-left: 3px solid #d4af37;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4em;
+            color: rgba(212,175,55,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-text {
+            color: #555;
+            line-height: 2;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            color: #d4af37;
+            font-size: 0.95em;
+            text-align: right;
+            letter-spacing: 0.05em;
+        }
+
+        .info-section {
+            background: #fff;
+            padding: 60px 50px;
+            margin-top: 60px;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .info-item {
+            padding: 30px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-label {
+            color: #d4af37;
+            font-size: 0.85em;
+            letter-spacing: 0.15em;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        .info-value {
+            color: #2c2c2c;
+            line-height: 1.8;
+        }
+
+        .info-value a {
+            color: #2c2c2c;
+            text-decoration: none;
+            border-bottom: 1px solid #d4af37;
+            transition: color 0.3s ease;
+        }
+
+        .info-value a:hover {
+            color: #d4af37;
+        }
+
+        .message-section {
+            text-align: center;
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 60px 40px;
+            background: #fff;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.08);
+        }
+
+        .message-text {
+            color: #555;
+            line-height: 2.2;
+            font-size: 1.05em;
+            margin-bottom: 40px;
+        }
+
+        .message-signature {
+            color: #d4af37;
+            font-size: 1.1em;
+            letter-spacing: 0.1em;
+            font-weight: 300;
+        }
+
+        .footer {
+            background: #2c2c2c;
+            color: #fff;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 0.15em;
+            font-family: 'Times New Roman', serif;
+        }
+
+        .footer-address {
+            color: #aaa;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .footer-links {
+            margin: 30px 0;
+        }
+
+        .footer-links a {
+            color: #d4af37;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.9em;
+            letter-spacing: 0.1em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+        }
+
+        .footer-copyright {
+            color: #666;
+            font-size: 0.8em;
+            margin-top: 40px;
+            letter-spacing: 0.1em;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5em;
+            }
+            
+            .section {
+                margin-bottom: 60px;
+            }
+            
+            .info-section {
+                padding: 40px 30px;
+            }
+
+            .menu-card,
+            .testimonial {
+                padding: 30px;
+            }
+
+            .message-section {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1 class="logo">maru's salon</h1>
+    <p class="tagline">PRIVATE BEAUTY SALON</p>
+    <div class="rating-badge">
+        <span class="stars">★★★★★</span>
+        <span class="score">4.93</span>
+        <span class="reviews">161 Reviews</span>
+    </div>
+    <br>
+    <a href="https://beauty.hotpepper.jp/slnH000722331/" class="cta-primary" target="_blank">RESERVE NOW</a>
+</div>
+
+<div class="container">
+    
+    <section class="section">
+        <h2 class="section-title">Our Philosophy</h2>
+        <p class="section-subtitle">頑張るあなたのための、特別な時間</p>
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🏠</div>
+                <h3 class="feature-title">完全貸切空間</h3>
+                <p class="feature-desc">プライベートな空間で、周りを気にせずゆったりとお過ごしいただけます</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">👶</div>
+                <h3 class="feature-title">キッズスペース完備</h3>
+                <p class="feature-desc">2児の母であるオーナーが運営。お子様連れでも安心してご来店いただけます</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌿</div>
+                <h3 class="feature-title">オーガニック志向</h3>
+                <p class="feature-desc">地肌に優しいオーガニックカラー、ヘナなど厳選した薬剤を使用</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">✨</div>
+                <h3 class="feature-title">髪質改善のプロ</h3>
+                <p class="feature-desc">アジュバン正規取扱店。独自のメソッドで理想の艶髪を実現</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Menu</h2>
+        <p class="section-subtitle">厳選されたメニューで、あなたの美しさを引き出します</p>
+        <div class="menu-grid">
+            <div class="menu-card">
+                <h3 class="menu-name">似合わせカット + カラー</h3>
+                <p class="menu-desc">あなたにぴったりのスタイルをご提案</p>
+                <div class="menu-price">¥8,000〜</div>
+            </div>
+            <div class="menu-card">
+                <h3 class="menu-name">カット + カラー + トリートメント</h3>
+                <p class="menu-desc">艶髪を実現する3STEPトリートメント</p>
+                <div class="menu-price">¥10,100〜</div>
+            </div>
+            <div class="menu-card">
+                <h3 class="menu-name">髪質改善ストレート</h3>
+                <p class="menu-desc">ダメージや癖毛でお悩みの方に</p>
+                <div class="menu-price">¥14,300</div>
+            </div>
+            <div class="menu-card">
+                <h3 class="menu-name">極上ヘッドスパ</h3>
+                <p class="menu-desc">頭皮ケアとマッサージで至福のひととき</p>
+                <div class="menu-price">¥3,500〜</div>
+            </div>
+            <div class="menu-card">
+                <h3 class="menu-name">オーガニックカラー・ヘナ</h3>
+                <p class="menu-desc">カラー剤にお悩みの方へ</p>
+                <div class="menu-price">¥7,000〜</div>
+            </div>
+            <div class="menu-card">
+                <h3 class="menu-name">フェイシャルエステ</h3>
+                <p class="menu-desc">アジュバン製品で美しい艶肌に</p>
+                <div class="menu-price">お問い合わせ</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Voice</h2>
+        <p class="section-subtitle">お客様からいただいた声</p>
+        <div class="testimonial-container">
+            <div class="testimonial">
+                <p class="testimonial-text">
+                    髪の毛が広がりやすく、縮毛矯正を勧められ続けていましたが、カットとクレンジングスパで髪が収まって驚きました。趣味や仕事の悩みなど色々お話でき、とても居心地良く過ごせました。
+                </p>
+                <p class="testimonial-author">アユミン様（20代後半）</p>
+            </div>
+            <div class="testimonial">
+                <p class="testimonial-text">
+                    完全貸切なので周りの目も気にならず、リラックスして施術を受けられます。2児の母であるオーナーさんに日頃の悩みを打ち明けつつ癒しも得られる最高のサロンです。
+                </p>
+                <p class="testimonial-author">常連のお客様</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="message-section">
+        <p class="message-text">
+            家事に、育児に、お仕事に。<br>
+            毎日頑張りすぎていませんか？<br><br>
+            
+            マルズサロンは、そんな頑張るあなたのための<br>
+            隠れ家のような美容室です。<br><br>
+            
+            完全貸切空間で、周りを気にせず<br>
+            ゆったりとした時間をお過ごしください。<br><br>
+            
+            髪と心、両方を癒すサロンで<br>
+            あなたをお待ちしています。
+        </p>
+        <p class="message-signature">オーナースタイリスト　ナガモリマサヨ</p>
+    </div>
+
+    <div class="info-section">
+        <h2 class="section-title">Access</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <div class="info-label">Address</div>
+                <div class="info-value">
+                    奈良県橿原市四条町627-5<br>
+                    ぷれも薬局1Fカフェ内
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Access</div>
+                <div class="info-value">
+                    近鉄八木西口駅 徒歩10分<br>
+                    駐車場完備
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Hours</div>
+                <div class="info-value">
+                    10:00 - 16:00<br>
+                    最終受付 14:45
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Closed</div>
+                <div class="info-value">
+                    日曜・祝日・土曜（土曜相談可）<br>
+                    平日不定休
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Payment</div>
+                <div class="info-value">現金のみ</div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Instagram</div>
+                <div class="info-value">
+                    <a href="https://www.instagram.com/marussalon" target="_blank">@marussalon</a>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 60px;">
+            <a href="https://beauty.hotpepper.jp/slnH000722331/" class="cta-primary" target="_blank">RESERVE NOW</a>
+        </div>
+    </div>
+
+</div>
+
+<footer class="footer">
+    <div class="footer-logo">maru's salon</div>
+    <div class="footer-address">
+        〒634-0821 奈良県橿原市四条町627-5 ぷれも薬局1Fカフェ内
+    </div>
+    <div class="footer-links">
+        <a href="https://beauty.hotpepper.jp/slnH000722331/" target="_blank">HOT PEPPER BEAUTY</a>
+        <a href="https://www.instagram.com/marussalon" target="_blank">INSTAGRAM</a>
+    </div>
+    <div class="footer-copyright">
+        © 2024 maru's salon. All Rights Reserved.
+    </div>
+</footer>
+
+</body>
+</html>
