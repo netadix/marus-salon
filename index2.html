@@ -43,9 +43,9 @@ nav a:hover::after{width:100%}
 .cta-button::before{content:'';position:absolute;top:50%;left:50%;width:0;height:0;border-radius:50%;background:rgba(255,255,255,0.3);transform:translate(-50%,-50%);transition:width 0.6s,height 0.6s}
 .cta-button:hover::before{width:300px;height:300px}
 .cta-button:hover{background:#c19563;transform:translateY(-2px);box-shadow:0 5px 15px rgba(212,165,116,0.3)}
-.scroll-indicator{position:absolute;bottom:50%;right:10%;transform:translateX(-50%);text-align:center;animation:bounce 2s infinite 2.5s}
+.scroll-indicator{position:absolute;bottom:0px;left:50%;transform:translateX(-50%);text-align:center;animation:bounce 2s infinite 2.5s}
 @keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-10px)}60%{transform:translateX(-50%) translateY(-5px)}}
-.scroll-indicator a{color:#444;text-decoration:none;font-size:18px;}
+.scroll-indicator a{color:#444;text-decoration:none;font-size:15px;}
 .fade-in-section{opacity:0;transform:translateY(50px);transition:opacity 0.8s,transform 0.8s}
 .fade-in-section.is-visible{opacity:1;transform:translateY(0)}
 section{padding:100px 20px}
@@ -121,6 +121,9 @@ footer{background:#2c3e50;color:white;padding:60px 20px 30px;text-align:center}
 .footer-links a{color:white;text-decoration:none;margin:0 15px;font-size:14px;transition:all 0.3s;display:inline-block}
 .footer-links a:hover{color:#d4a574;transform:translateY(-3px)}
 .footer-bottom{margin-top:40px;padding-top:30px;border-top:1px solid rgba(255,255,255,0.1);font-size:13px;opacity:0.7}
+iframe {
+animation:fadeInUp 1s 0.8s both
+}
 @media(max-width:768px){.hero h1{font-size:36px}.hero .subtitle{font-size:14px}.section-title{font-size:28px}nav{display:none}.features-grid,.menu-grid,.access-grid{grid-template-columns:1fr}}
 </style>
 </head>
@@ -138,7 +141,10 @@ footer{background:#2c3e50;color:white;padding:60px 20px 30px;text-align:center}
 </header>
 <section class="hero">
 <h1>maru's salon</h1>
-<img src="logo.png" style="width:240px; height: auto; margin-bottom: 20px;">
+<div>
+<img src="logo.png" style="width:240px; height: auto; margin-bottom: 24px; border-radius:50%; border: 3px solid #d4a574; animation:fadeInUp 2.6s forwards;">
+<div class="scroll-indicator"><a href="#start">特長を見る↓</a></div>
+</div>
 <div class="subtitle">– 頑張るあなたのための、特別な時間 –</div>
 <div class="rating">
 <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
@@ -147,7 +153,6 @@ footer{background:#2c3e50;color:white;padding:60px 20px 30px;text-align:center}
 <div style="text-align:center;margin-top:30px">
 <a href="https://beauty.hotpepper.jp/slnH000722331/" class="cta-button" target="_blank">今すぐ予約</a>
 </div>
-<div class="scroll-indicator"><a href="#start">特長を見る↓</a></div>
 </section>
 <section id="start" class="intro fade-in-section">
 <div class="container">
@@ -251,8 +256,8 @@ footer{background:#2c3e50;color:white;padding:60px 20px 30px;text-align:center}
 <section id="access" class="access fade-in-section">
 <div class="container">
 <h2 class="section-title">Access</h2>
-<div align="center">
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.968305005119!2d135.78755707519716!3d34.503687793759305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600133a39ec9fa25%3A0x5e027f185a4196e9!2smaru&#39;s%20salon!5e0!3m2!1sja!2sjp!4v1766688339934!5m2!1sja!2sjp" width="600" height="450" style="border:0; margin-bottom:20px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+<div id="map" align="center">
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.968305005119!2d135.78755707519716!3d34.503687793759305!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x600133a39ec9fa25%3A0x5e027f185a4196e9!2smaru&#39;s%20salon!5e0!3m2!1sja!2sjp!4v1766688339934!5m2!1sja!2sjp" width="600" height="450" style="border:0; margin-bottom:20px; max-width:90%;border-radius:3%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 </div>
 <div class="access-grid">
 <div class="access-item">
