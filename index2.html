@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
             vx: (Math.random() - 0.5) * 1.5,
             vy: (Math.random() - 0.5) * 1.5,
             life: 1.0,
-            ageRate: 0.0005 + Math.random() * 0.001 
+            ageRate: 0.0005 + Math.random() * 0.003 
         };
     };
 
@@ -132,19 +132,45 @@ document.addEventListener('DOMContentLoaded', () => {
     update();
 
     // --- タップイベント（ここは鉄板） ---
+// --- スマホでもスクロールできる＆吸い寄せられるイベント設定 ---
+
     const updatePos = (e) => {
+        // タッチでもマウスでも座標を取れるように共通化
         const ev = (e.touches && e.touches[0]) || e;
         targetX = ev.clientX;
         targetY = ev.clientY;
     };
 
-    window.addEventListener('mousedown', (e) => { isPressing = true; updatePos(e); });
-    window.addEventListener('mousemove', (e) => { if(isPressing) updatePos(e); });
-    window.addEventListener('mouseup', () => { isPressing = false; });
+    // 1. マウス（PC）
+    window.addEventListener('mousedown', (e) => { 
+        isPressing = true; 
+        updatePos(e); 
+    });
+    window.addEventListener('mousemove', (e) => { 
+        if(isPressing) updatePos(e); 
+    });
+    window.addEventListener('mouseup', () => { 
+        isPressing = false; 
+    });
 
-    window.addEventListener('touchstart', (e) => { isPressing = true; updatePos(e); if(e.cancelable) e.preventDefault(); }, {passive: false});
-    window.addEventListener('touchmove', (e) => { if(isPressing) { updatePos(e); if(e.cancelable) e.preventDefault(); } }, {passive: false});
-    window.addEventListener('touchend', () => { isPressing = false; });
+    // 2. タッチ（スマホ）★ここが重要！
+    // passive: true に戻すことで、ブラウザのスクロールを優先させる
+    window.addEventListener('touchstart', (e) => { 
+        isPressing = true; 
+        updatePos(e); 
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => { 
+        if(isPressing) {
+            updatePos(e);
+            // preventDefault は絶対にしない！
+            // これで、サークルを呼び寄せながら画面もスルスル動くようになる
+        }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => { 
+        isPressing = false; 
+    });
 });
 </script>
 
@@ -448,7 +474,7 @@ animation:fadeInUp 1s 0.8s both
 <a href="https://beauty.hotpepper.jp/slnH000722331/" target="_blank">HOT PEPPER BEAUTY</a>
 <a href="https://www.instagram.com/marussalon" target="_blank">INSTAGRAM</a>
 </div>
-<div class="footer-bottom">© 2026 maru's salon. All Rights Reserved. &nbsp;| &nbsp;&nbsp;Powered by &nbsp;<a id="credit" href="https://uzuuzu.shop" target="_blank" style="color:#2c3e50; text-decoration:none;"><span style="background-color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: normal;">うずうず本舗</span></a>
+<div class="footer-bottom">© 2026 maru's salon All Rights Reserved. &nbsp;| &nbsp;&nbsp;Powered by &nbsp;<a id="credit" href="https://uzuuzu.shop" target="_blank" style="color:#2c3e50; text-decoration:none;"><span style="background-color: #fff; padding: 2px 6px; border-radius: 4px; font-weight: normal;">うずうず本舗</span></a>
 </div>
 </div>
 </footer>
