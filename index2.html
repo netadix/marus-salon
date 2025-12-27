@@ -6,6 +6,148 @@
 <title>maru's salon | 奈良県橿原市 完全貸切プライベートサロン</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 <link rel="icon" href="logo.png" type="image/png">
+
+
+<style>
+/* 1. 全ての要素を強制的に「透かし」にする（犯人を逃さない） */
+html, body {
+    background: #fdfbfb !important; /* ベースの色 */
+}
+section, .hero, .intro, .philosophy, .menu, .voice, .access, .container {
+    background-color: transparent !important;
+}
+
+/* 2. 背景コンテナを「最強の前面」に持ってくる（一旦見えるか確認するため） */
+#bg-circles {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 0 !important; /* 一番前に持ってきたぞ！ */
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    /* 視認性向上のために最初はあえて枠線をつける */
+    border: 2px solid rgba(0,0,0,0.1); 
+    filter: blur(20px); 
+    will-change: transform, opacity;
+}
+
+@keyframes float-and-fade {
+    0% { opacity: 0; transform: translate(0, 0) scale(1); }
+    20% { opacity: 0.6; } /* 濃くした */
+    80% { opacity: 0.6; }
+    100% { opacity: 0; transform: translate(var(--mx), var(--my)) scale(2); }
+}
+</style>
+
+<div id="bg-circles"></div>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const container = document.getElementById('bg-circles');
+    const colors = ['#FFD1DC', '#D1E8FF', '#E2F0CB', '#F0E2FF', '#FFF9C4'];
+    let circles = [];
+    const circleCount = 12;
+
+    const friction = 0.98; 
+    const ease = 0.001; 
+    let targetX = null;
+    let targetY = null;
+    let isPressing = false;
+
+    // --- サークル生成の型紙 ---
+    const createCircle = () => {
+        const div = document.createElement('div');
+        div.className = 'floating-circle';
+        const size = (Math.random() * 7 + 3) * (window.innerWidth / 100);
+        
+        div.style.width = div.style.height = `${size}px`;
+        div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        div.style.opacity = "0";
+        container.appendChild(div);
+
+        return {
+            el: div,
+            x: Math.random() * window.innerWidth,
+            y: Math.random() * window.innerHeight,
+            vx: (Math.random() - 0.5) * 1.5,
+            vy: (Math.random() - 0.5) * 1.5,
+            life: 1.0,
+            ageRate: 0.0005 + Math.random() * 0.001 
+        };
+    };
+
+    // 初回12個
+    for (let i = 0; i < circleCount; i++) circles.push(createCircle());
+
+    const update = () => {
+        const nextCircles = []; // 新しい世代を格納する箱
+
+        circles.forEach(c => {
+            c.life -= c.ageRate;
+
+            if (c.life <= 0) {
+                // 寿命が尽きたらDOMを消して、新しいサークルを1つ予約
+                c.el.remove();
+                nextCircles.push(createCircle());
+            } else {
+                // 生存中なら物理計算
+                if (isPressing && targetX !== null && targetY !== null) {
+                    c.vx += (targetX - c.x) * ease;
+                    c.vy += (targetY - c.y) * ease;
+                } else {
+                    c.vx += (Math.random() - 0.5) * 0.1;
+                    c.vy += (Math.random() - 0.5) * 0.1;
+                }
+
+                c.vx *= friction;
+                c.vy *= friction;
+                c.x += c.vx;
+                c.y += c.vy;
+
+                // 端の跳ね返り
+                if (c.x < 0 || c.x > window.innerWidth) c.vx *= -1;
+                if (c.y < 0 || c.y > window.innerHeight) c.vy *= -1;
+
+                // 透明度計算（0.4をピークに山形）
+                let op = 0.4;
+                if (c.life > 0.8) op = (1.0 - c.life) * 2;
+                else if (c.life < 0.2) op = c.life * 2;
+                
+                c.el.style.transform = `translate(${c.x}px, ${c.y}px)`;
+                c.el.style.opacity = Math.max(0, Math.min(0.4, op));
+
+                nextCircles.push(c); // 生き残りを次の世代へ
+            }
+        });
+
+        circles = nextCircles; // 世代交代！
+        requestAnimationFrame(update);
+    };
+    update();
+
+    // --- タップイベント（ここは鉄板） ---
+    const updatePos = (e) => {
+        const ev = (e.touches && e.touches[0]) || e;
+        targetX = ev.clientX;
+        targetY = ev.clientY;
+    };
+
+    window.addEventListener('mousedown', (e) => { isPressing = true; updatePos(e); });
+    window.addEventListener('mousemove', (e) => { if(isPressing) updatePos(e); });
+    window.addEventListener('mouseup', () => { isPressing = false; });
+
+    window.addEventListener('touchstart', (e) => { isPressing = true; updatePos(e); if(e.cancelable) e.preventDefault(); }, {passive: false});
+    window.addEventListener('touchmove', (e) => { if(isPressing) { updatePos(e); if(e.cancelable) e.preventDefault(); } }, {passive: false});
+    window.addEventListener('touchend', () => { isPressing = false; });
+});
+</script>
+
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Helvetica Neue',Arial,'Hiragino Sans',sans-serif;line-height:1.8;color:#333;background:#fff;overflow-x:hidden}
@@ -285,6 +427,10 @@ animation:fadeInUp 1s 0.8s both
 <p>現金のみ</p>
 </div>
 <div class="access-item">
+<h3>Phone</h3>
+<p>090-9542-2003<br>ご予約・お問い合わせ</p>
+</div>
+<div class="access-item">
 <h3>Instagram</h3>
 <p><a href="https://www.instagram.com/marussalon" target="_blank" style="color:#d4a574;text-decoration:none">@marussalon</a></p>
 </div>
@@ -296,7 +442,7 @@ animation:fadeInUp 1s 0.8s both
 </section>
 <footer>
 <div class="footer-content">
-<div class="logo">maru's salon</div>
+<div class="logo" style="color: rgba(255, 255, 255, 0.8);">maru's salon</div>
 <p style="margin-top:20px;font-size:14px">〒634-0821 奈良県橿原市四条町627-5 ぷれも薬局1Fカフェ内</p>
 <div class="footer-links">
 <a href="https://beauty.hotpepper.jp/slnH000722331/" target="_blank">HOT PEPPER BEAUTY</a>
