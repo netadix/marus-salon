@@ -118,10 +118,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 let op = 0.4;
                 if (c.life > 0.8) op = (1.0 - c.life) * 2;
                 else if (c.life < 0.2) op = c.life * 2;
+
                 
+
+
+
+
                 c.el.style.transform = `translate(${c.x}px, ${c.y}px)`;
                 c.el.style.opacity = Math.max(0, Math.min(0.4, op));
 
+                // update関数の中、スタイルの反映直前にこれを入れるだけ！
+
+                // 1. サイズの呼吸：lifeに合わせて大きさが微妙に変化する
+                const scale = 1 + Math.sin(c.life * Math.PI * 2) * 0.2; 
+
+                // 2. スタイル反映（transformにscaleを追加）
+                c.el.style.transform = `translate(${c.x}px, ${c.y}px) scale(${scale})`;
+
+                // 3. 攻撃的な色変化：指に近いサークルだけ、ちょっとだけ明るくする（オプション）
+                if (isPressing && targetX !== null) {
+                    const dist = Math.hypot(targetX - c.x, targetY - c.y);
+                    if (dist < 100) {
+                        //c.el.style.filter = 'brightness(1.2) saturate(1.1)';
+                        c.el.style.filter = 'blur(20px)';
+                    } else {
+                        //c.el.style.filter = 'none';
+                        c.el.style.filter = 'blur(5px)';
+                    }
+                }
+                
                 nextCircles.push(c); // 生き残りを次の世代へ
             }
         });
