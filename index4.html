@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>マルズサロンのホームページへようこそ！！！</title>
+    <style>
+        /* 1. 宇宙と混沌の背景 */
+        body {
+            background-color: #000080; 
+            background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); /* 砂嵐/宇宙感 */
+            color: #ffffff;
+            font-family: "MS Pゴシック", "Shift_JIS", sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            /* リンクの色を強制指定（これぞ伝統） */
+            link-color: #0000FF;
+            vlink-color: #800080;
+        }
+
+        /* 2. レインボー＆巨大フォント */
+        h1 {
+            font-size: 3.5rem !important;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0px #ff0000, 6px 6px 0px #0000ff; /* 激しい色ズレ */
+            animation: rainbow 0.5s infinite linear;
+        }
+
+        @keyframes rainbow {
+            0% { color: #ff0000; } 20% { color: #ffff00; } 40% { color: #00ff00; }
+            60% { color: #00ffff; } 80% { color: #0000ff; } 100% { color: #ff00ff; }
+        }
+
+        /* 3. 爆速で点滅する Welcome */
+        .pikapika {
+            font-weight: bold;
+            animation: blink 0.3s step-end infinite;
+        }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* 4. ヒーローエリア（歪んだクリッピング） */
+        .hero-dummy {
+            width: 90%;
+            max-width: 800px;
+            height: 200px;
+            margin: 20px auto;
+            border: 10px ridge #ff00ff; /* 毒々しいピンク枠 */
+            overflow: hidden;
+            background-color: #000;
+        }
+        .hero-dummy img {
+            width: 100%;
+            height: auto;
+            filter: contrast(150%) saturate(150%); /* 謎の高コントラスト */
+        }
+
+        /* 5. 黄金のテーブル（border=10） */
+        table {
+            border: 10px outset #ffd700;
+            background-color: #ffffff;
+            color: #000;
+            margin: 20px auto;
+            width: 95%;
+            max-width: 600px;
+            font-size: 1.2rem;
+        }
+        th, td { border: 4px inset #ccc; padding: 15px; }
+
+        /* 6. キリ番カウンター */
+        .counter-box {
+            background: #000;
+            border: 3px double #fff;
+            padding: 10px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .counter-num {
+            color: #0f0;
+            font-size: 2rem;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 5px;
+        }
+
+        /* リンクの基本設定 */
+        a { color: #00ffff; font-weight: bold; text-decoration: underline; }
+        a:hover { background-color: #ff0000; color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <marquee scrollamount="30" bgcolor="#ff0000" style="color:white; font-weight:bold; padding:5px;">
+        🔥🔥🔥 祝・マルズサロン 爆速開店！！ キリ番報告は掲示板へ！！ 🔥🔥🔥
+    </marquee>
+
+    <h1 class="rainbow-text">✨ マルズサロンへようこそ ✨</h1>
+    <p class="pikapika">✨ Welcome to maru's salon Home Page ✨</p>
+    
+    <div class="hero-dummy">
+        <img src="interior.jpg" alt="店内">
+    </div>
+
+    <div class="counter-box">
+        <p style="margin:0; font-size:0.8rem;">あなたは</p>
+        <span class="counter-num">00001234</span>
+        <p style="margin:0; font-size:0.8rem;">番目のお客様です（キリ番厳守）</p>
+    </div>
+
+    <table>
+        <tr><th colspan="2" bgcolor="#ffd700" style="font-size:1.5rem;">📊 サロン・データ 📊</th></tr>
+        <tr><td>📍 場所</td><td>橿原市（Googleマップ推奨）</td></tr>
+        <tr><td>📞 電話</td><td><a href="tel:09095422003">090-9542-2003</a></td></tr>
+        <tr><td>📸 Instagram</td><td><a href="https://www.instagram.com/marussalon/">写真を見る</a></td></tr>
+        <tr><td>📅 予約</td><td><a href="https://beauty.hotpepper.jp/slnH000722331/">ホットペッパー（別窓）</a></td></tr>
+        <tr><td>💇 スタイリスト</td><td>ナガモリ マサヨ</td></tr>
+    </table>
+
+    <div style="margin: 30px;">
+        <img src="https://web.archive.org/web/20090830035543/http://geocities.com/Heartland/6211/undercon.gif" alt="工事中">
+        <span style="color:yellow; font-size:1.5rem; font-weight:bold;">ただいま絶賛建設中！</span>
+        <img src="https://web.archive.org/web/20090830035543/http://geocities.com/Heartland/6211/undercon.gif" alt="工事中">
+    </div>
+
+    <hr>
+    <p>推奨環境：Internet Explorer 5.5 / Netscape Navigator 4.0</p>
+    
+    <div style="margin: 20px;">
+        <img src="https://via.placeholder.com/88x31?text=Banner" alt="バナー">
+        <img src="https://via.placeholder.com/88x31/000/fff?text=LinkFree" alt="リンクフリー">
+    </div>
+<div style="margin: 20px auto; padding: 10px; border: 2px solid #666; background: #eee; color: #333; width: 300px; font-size: 0.8rem;">
+    <p style="margin: 0 0 5px 0; font-weight: bold;">⚠️ FLASHコンテンツがブロックされました</p>
+    <div style="background: #ccc; border: 1px inset #fff; padding: 10px; margin-bottom: 5px;">
+        <a href="https://www.adobe.com/go/getflashplayer" target="_blank">
+            <img src="https://web.archive.org/web/20040610193427im_/http://www.macromedia.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"><br>
+            <span style="font-size: 0.7rem;">Flash Playerをダウンロード（推奨）</span>
+        </a>
+    </div>
+    <p style="font-size: 0.7rem; color: #666;">※当サイトのメニュー閲覧には Flash Player 7.0 以上が必要です。無い場合は何も表示されません。</p>
+</div>
+    <footer style="margin-top: 50px; font-size: 0.9rem; border-top: 2px dashed #fff; padding: 20px; background: #000;">
+        Powered by <a href="https://uzuuzu.shop">うずうず本舗</a> (v0.1 Alpha)
+    </footer>
+
+</body>
+</html>
